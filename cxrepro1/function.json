@@ -1,0 +1,24 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "queuemsg",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "cxqueue",
+      "connection": "cxreporst1_QUEUE"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "documents",
+      "databaseName": "lukell",
+      "collectionName": "lukecontainer",
+      "connectionStringSetting": "CosmosConnection",
+      "partitionKey":"{id}",
+      //"sqlQuery": "SELECT * from c where c.id = {id}"
+      "sqlQuery": "SELECT DISTINCT VALUE c.id FROM c"
+    }
+  ]
+}
+
